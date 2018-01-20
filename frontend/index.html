@@ -74,11 +74,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="puzzle-gen/puzzle-gen.js"></script>
+	<script src="progress-bar.js"></script>
 	<script>
 	var currentPuzzle
 	function newPuzzle() {
 		currentPuzzle = genMathsPuzzle()
 		document.getElementById("question-text").innerHTML = "<h2>" + currentPuzzle + " = ?" + "</h2>";
+		initialiseProgressBar(20, function(){alert("TIME UP");});
 	}
 	function submitAnswer() {
 		if (checkMathsSolution(currentPuzzle, document.getElementById("answer-text").value)){
@@ -90,10 +92,8 @@
 	}
 	window.onload = newPuzzle();
 	</script>
-    <script src="progress-bar.js"></script>
-    <script>
-        initialiseProgressBar(20, function(){alert("TIME UP");});
-        startTimer();
-    </script>
+    <!-- <script> -->
+        <!-- // startTimer(); -->
+    <!-- </script> -->
   </body>
 </html>

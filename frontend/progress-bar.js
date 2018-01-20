@@ -1,32 +1,28 @@
 const RED_THRESHOLD = 20;
 const YELLOW_THRESHOLD = 50;
 
-var seconds_remaining;
 var total_seconds;
 
 var out_of_time_callback;
 
 var countdown_interval;
 
+var barInitTime;
+var barFinishTime;
+
 function initialiseProgressBar(seconds, out_of_time_callback){
     console.log("initialising progress bar");
-    seconds_remaining = seconds;
     total_seconds = seconds;
+    barInitTime = Date.now();
+    barFinishTime = barInitTime + 1000 * total_seconds;
     out_of_time_callback = out_of_time_callback;
     updateProgressBar();
-}
-
-// call this once per second
-function decrementSeconds(){ //todo min zero
-    console.log("Decrementing seconds");
-    seconds_remaining--;
-    if (seconds_remaining <= 0){
-        out_of_time_callback();
-    }
+    setInterval(updateProgressBar, 100);
 }
 
 function updateProgressBar(){
-    var percentage = ((seconds_remaining / total_seconds) * 100).toFixed(2);
+    var percentage = (100 - 100 * ((Date.now() - barInitTime) / (1000 * total_seconds))).toFixed(2);
+
     console.log("Updating progress bar to " + percentage + "%");
     $('#timer-progress-bar').css({ width : percentage + "%"}); 
     
@@ -49,12 +45,3 @@ function updateProgressBar(){
         $('#timer-progress-bar').addClass('bg-danger');
     }
 }
-
-function startTimer(){    
-    countdown_interval = setInterval(decrementSeconds, 1000);
-}
-function pauseTimer(){
-    window.clearInterval(countdown_interval);
-}
-
-setInterval(updateProgressBar, 1000);
