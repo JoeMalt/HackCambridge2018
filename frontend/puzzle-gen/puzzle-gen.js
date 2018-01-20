@@ -18,7 +18,7 @@ var OPERATIONS = [
 	}
 ];
 
-function genPuzzle() {
+function genMathsPuzzle() {
 	var opIndex = -1
 	do
 	{
@@ -37,6 +37,6 @@ function genPuzzle() {
 	return( firstOperand.toString() + OPERATIONS[opIndex].label + secondOperand.toString());	
 }
 
-function checkSolution(puzzle, solution){
+function checkMathsSolution(puzzle, solution){
 	return solution == eval(puzzle)
 }
