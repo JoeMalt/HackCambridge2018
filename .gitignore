@@ -1,2 +1,7 @@
 .DS_Store
 */.DS_Store
+
+# Webserver env
+emotion-api-service/run.sh
+# Test image
+emotion-api-service/test/
