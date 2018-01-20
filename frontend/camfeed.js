@@ -54,10 +54,9 @@ navigator.mediaDevices.getUserMedia({audio: false, video: {facingMode: "user"}})
 		// Avoid using this in new browsers, as it is going away.
 		video.src = window.URL.createObjectURL(mediaStream);
 	}
-	//Flip horizontalyy
-	video.style.cssText = "transform: scaleX(-1);"
 	video.onloadedmetadata = e => {
 		video.play();
+		sendScreenshot(video)
 		setInterval(() => { sendScreenshot(video); }, SCREENSHOT_DELAY_MS);
 	}
 })
