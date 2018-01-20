@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <title>Puzzle Test</title>
+		<canvas id="myCanvas" width="200" height="200"></canvas> 	
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <script type="text/javascript" src="puzzle-gen.js"></script>
 		<script type="text/javascript">
-        document.write(genMathsPuzzle());
-        </script>
+		var puzzle = genSlidingPuzzle(3);
+		</script>
     </head>
     <body>
-    
+	<script>
+	
+	function load(){
+	drawSlidingPuzzle(puzzle[0], puzzle[1], 3, document.getElementById("myCanvas"), image);
+	}
+	</script>
+	<img id="image" src="camlogo.jpg" width=200 height=200 onload="load()" display="none" alt="complete logo" style="display: none;">
     </body>
 </html>
