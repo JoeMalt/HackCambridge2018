@@ -81,11 +81,16 @@
 	<script src="progress-bar.js"></script>
     <script src="score.js"></script>
 	<script>
+    function endGame(){
+        alert("You are dead");
+    }    
+        
+        
 	var currentPuzzle
 	function newPuzzle() {
 		currentPuzzle = genMathsPuzzle()
 		document.getElementById("question-text").innerHTML = "<h2>" + currentPuzzle + " = ?" + "</h2>";
-		initialiseProgressBar(20, function(){alert("TIME UP");});
+		initialiseProgressBar(20, endGame);
 	}
 	function submitAnswer() {
 		if (checkMathsSolution(currentPuzzle, document.getElementById("answer-text").value)){

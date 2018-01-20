@@ -10,18 +10,24 @@ var countdown_interval;
 var barInitTime;
 var barFinishTime;
 
-function initialiseProgressBar(seconds, out_of_time_callback){
+function initialiseProgressBar(seconds, out_of_time_callback_fn){
     console.log("initialising progress bar");
     total_seconds = seconds;
     barInitTime = Date.now();
     barFinishTime = barInitTime + 1000 * total_seconds;
-    out_of_time_callback = out_of_time_callback;
+    out_of_time_callback = out_of_time_callback_fn;
     updateProgressBar();
-    setInterval(updateProgressBar, 100);
+    countdown_interval = setInterval(updateProgressBar, 100);
 }
 
 function updateProgressBar(){
     var percentage = (100 - 100 * ((Date.now() - barInitTime) / (1000 * total_seconds))).toFixed(2);
+    
+    if (percentage < 0.0){
+        console.log("out of time");
+        out_of_time_callback();
+        window.clearInterval(countdown_interval);
+    }
 
     console.log("Updating progress bar to " + percentage + "%");
     $('#timer-progress-bar').css({ width : percentage + "%"}); 
