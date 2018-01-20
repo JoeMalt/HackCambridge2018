@@ -27,7 +27,7 @@
         
         <div class="row" id="question-row">
             <div class="col-4 offset-md-4", id = "question-text">
-                <h2>2+5 = ?</h2>
+                <h2></h2>
             </div>
         </div>
         
@@ -35,9 +35,9 @@
             <div class="col-4 offset-md-4">
                 
                 <div class="input-group">
-                    <input type="text" class="form-control" name="answer" />
+                    <input type="text" class="form-control" name="answer", id = "answer-text" />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-secondary">Submit</button>
+                        <button type="button" class="btn btn-secondary" onclick="submitAnswer()">Submit</button>
                     </span>
                 </div>
             </div>
@@ -75,9 +75,20 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="puzzle-gen/puzzle-gen.js"></script>
 	<script>
+	var currentPuzzle 
 	function newPuzzle() {
-		document.getElementById("question-text").innerHTML = "<h2>" + genPuzzle() + " = ?" + "</h2>";
+		currentPuzzle = genPuzzle()
+		document.getElementById("question-text").innerHTML = "<h2>" + currentPuzzle + " = ?" + "</h2>";
 	}
+	function submitAnswer() {
+		if (checkSolution(currentPuzzle, document.getElementById("answer-text").value)){
+			newPuzzle();
+			//TODO correct feedback, reset timer
+		} else {
+		    //TODO incorrect feedback, penalise?
+		}
+	}
+	window.onload = newPuzzle();
 	</script>
   </body>
 </html>
