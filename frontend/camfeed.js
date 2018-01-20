@@ -1,5 +1,5 @@
 const SCREENSHOT_DELAY_MS = 5000;
-const SEND_IMAGES_TO = "http://hc.ree.to:4000/emote"
+const SEND_IMAGES_TO = "https://ree.to:4000/emote"
 
 let startTime = Date.now();
 
@@ -14,6 +14,7 @@ let sendScreenshot = (video) => {
 	request = new XMLHttpRequest();
 	request.open("POST", SEND_IMAGES_TO);
 	request.send(canvas.toDataURL("image/png").substring(22)); //strip out the "data:image/png;base64," from the data URI
+    updateMoodBars(request.response);
 	// TODO: HANDLE RESPONSE!
 }
 

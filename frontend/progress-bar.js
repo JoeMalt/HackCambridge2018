@@ -29,23 +29,23 @@ function updateProgressBar(){
         window.clearInterval(countdown_interval);
     }
 
-    console.log("Updating progress bar to " + percentage + "%");
+    ///console.log("Updating progress bar to " + percentage + "%");
     $('#timer-progress-bar').css({ width : percentage + "%"}); 
     
     if (percentage > YELLOW_THRESHOLD){
-        console.log("Setting progress bar to green");
+        ///console.log("Setting progress bar to green");
         $('#timer-progress-bar').addClass('bg-success');
         $('#timer-progress-bar').removeClass('bg-warning');
         $('#timer-progress-bar').removeClass('bg-error');
     }
     else if (percentage > RED_THRESHOLD){
-        console.log("Setting progress bar to yellow");
+        ///console.log("Setting progress bar to yellow");
         $('#timer-progress-bar').removeClass('bg-success');
         $('#timer-progress-bar').addClass('bg-warning');
         $('#timer-progress-bar').removeClass('bg-error');
     }
     else{
-        console.log("Setting progress bar to red");
+        ///console.log("Setting progress bar to red");
         $('#timer-progress-bar').removeClass('bg-success');
         $('#timer-progress-bar').removeClass('bg-warning');
         $('#timer-progress-bar').addClass('bg-danger');
