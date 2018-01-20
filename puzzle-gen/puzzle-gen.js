@@ -23,7 +23,7 @@ function genPuzzle() {
 	do
 	{
 		opIndex = Math.floor(Math.random() * OPERATIONS.length)
-	} while (opIndex < 0 || opIndex >= OPERATIONS.length)
+	} while (opIndex < 0 || opIndex >= OPERATIONS.length) //call me paranoid
 		
 	var firstOperand = Math.floor(Math.random() * (OPERATIONS[opIndex].max - OPERATIONS[opIndex].min) + OPERATIONS[opIndex].min);
 	var secondOperand = Math.floor(Math.random() * (OPERATIONS[opIndex].max - OPERATIONS[opIndex].min) + OPERATIONS[opIndex].min);
@@ -35,4 +35,8 @@ function genPuzzle() {
 	}
 	
 	return( firstOperand.toString() + OPERATIONS[opIndex].label + secondOperand.toString());	
+}
+
+function checkSolution(puzzle, solution){
+	return solution == eval(puzzle)
 }
