@@ -21,6 +21,7 @@ var client = http.Client{}
 
 func emotionHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	in, _ := ioutil.ReadAll(base64.NewDecoder(base64.StdEncoding, r.Body))
 	ereq, err := http.NewRequest("POST", "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize", bytes.NewReader(in))
