@@ -3,8 +3,6 @@ const YELLOW_THRESHOLD = 50;
 
 var total_seconds;
 
-var finishedBarCallback;
-
 var updateInterval;
 
 var barInitTime;
@@ -12,7 +10,6 @@ var barInitTime;
 function initialiseProgressBar(seconds, out_of_time_callback_fn){
     total_seconds = seconds;
     barInitTime = Date.now();
-    finishedBarCallback = out_of_time_callback;
     out_of_time_callback = out_of_time_callback_fn;
     updateProgressBar();
     updateInterval = setInterval(updateProgressBar, 100);
