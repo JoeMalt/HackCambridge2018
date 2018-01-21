@@ -61,6 +61,7 @@
 						document.onkeypress = e => {
 							switch(e.code) {
 								case "Space":
+									e.preventDefault(); // Prevent space-bar scroll
 									selectDigit();
 									break;
 							}
