@@ -68,7 +68,7 @@
             
             function startGame(){
                 $("#content").load("main_content.html", "", () => {
-                    initVideo();
+                    initVideo(mediaStream);
                     initDial();
                     newPuzzle();
                     sendEmotionRequests = true;
