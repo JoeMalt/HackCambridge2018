@@ -14,7 +14,7 @@ function newPuzzle() {
 	currentPuzzle = genMathsPuzzle()
 	document.getElementById("question-text").innerHTML = "<h2>" + currentPuzzle + " = ?" + "</h2>";
 	document.getElementById("answer-text").innerHTML = "0";
-	initialiseProgressBar(10, endGame);
+	initialiseProgressBar(30, endGame);
 }
 
 function checkAnswer() {
