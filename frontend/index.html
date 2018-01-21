@@ -10,7 +10,6 @@
 
     <title>Keep Smiling!</title>
 
-    <script type="text/javascript" src="camfeed.js"></script>
   </head>
   <body>
     
@@ -46,7 +45,11 @@
         </div>
         
         <div class="row" id="mood-video-row" style="margin-top: 20px;">
-            <div class="col-3 offset-md-4">
+            <div class="col-2 offset-md-2">
+                <h3 style="margin-bottom: 0px">Score</h3>
+                <p id="score-display" style="font-size: 80px; margin-top:0px">0</p>
+            </div>
+            <div class="col-3">
                 <h4>Your mood:</h4>
                 
                     Happy:
@@ -74,18 +77,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="puzzle-gen/puzzle-gen.js"></script>
+    <script src="mood-bars.js"></script>
 	<script src="progress-bar.js"></script>
 	<script src="myo.js"></script>
 	<script src="myo-stuff.js"></script>
+    <script src="score.js"></script>
+    <script type="text/javascript" src="camfeed.js"></script>
 	<script>
+    function endGame(){
+        alert("You are dead");
+    }    
+        
+        
 	var currentPuzzle
 	function newPuzzle() {
 		currentPuzzle = genMathsPuzzle()
 		document.getElementById("question-text").innerHTML = "<h2>" + currentPuzzle + " = ?" + "</h2>";
-		initialiseProgressBar(20, function(){alert("TIME UP");});
+		initialiseProgressBar(20, endGame);
 	}
 	function submitAnswer() {
 		if (checkMathsSolution(currentPuzzle, document.getElementById("answer-text").value)){
+            incrementScore();
 			newPuzzle();
 			//TODO correct feedback, reset timer
 		} else {
