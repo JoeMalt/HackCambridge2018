@@ -4,8 +4,8 @@ const YELLOW_THRESHOLD = 50;
 var total_seconds;
 
 var updateInterval;
-
 var barInitTime;
+var out_of_time_callback;
 
 function initialiseProgressBar(seconds, out_of_time_callback_fn){
     total_seconds = seconds;
@@ -21,7 +21,7 @@ function updateProgressBar(){
     if (percentage < 0.0){
         console.log("out of time");
         out_of_time_callback();
-        window.clearInterval(countdown_interval);
+        window.clearInterval(updateInterval);
     }
 
     ///console.log("Updating progress bar to " + percentage + "%");

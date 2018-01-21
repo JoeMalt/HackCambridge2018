@@ -1,6 +1,9 @@
+var myoConnected = false;
+
 Myo.connect("uk.ac.cam.keepsmiling");
 
 Myo.on("connected", (data, timestamp) => {
+	myoConnected = true;
 	console.log("Myo successfully connected. Data: " + JSON.stringify(data) + ". Timestamp: " + timestamp + ".");
 	Myo.setLockingPolicy("none")
 });
