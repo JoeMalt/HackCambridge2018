@@ -20,6 +20,8 @@ function newPuzzle() {
 function checkAnswer() {
 	if (checkMathsSolution(currentPuzzle, document.getElementById("answer-text").innerHTML)){
 		incrementScore();
+		$("#answer-text").css({"border-color": "#29da44"});
+		setTimeout(() => {$("#answer-text").css({"border-color": "#ced4da"});}, 200);
 		newPuzzle();
 		//TODO correct feedback, reset timer
 	} else {

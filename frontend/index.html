@@ -46,7 +46,8 @@
 			var interval;
 
 			var cam = false;
-			getCameraMedia().then(() => {cam = true;});
+			var mediaStream; 
+			getCameraMedia().then((_mediaStream) => {cam = true; mediaStream = _mediaStream});
 
 			function checkParameters() {
 				if(cam) {
@@ -54,15 +55,15 @@
 				}
 
 				// UNCOMMENT THIS TO REQUIRE MYO
-				// if(myoConnected) {
-				// 	document.getElementById("myoConnectedCheckbox").checked = true;
-				// }
+				if(myoConnected) {
+					document.getElementById("myoConnectedCheckbox").checked = true;
+				}
 
 				// UNCOMMENT THIS TO REQUIRE MYO
 				if(cam /* && myoConnected*/){
 					window.clearInterval(interval);
-					startGame();
-				}
+					setTimeout(startGame,200); // Timeout so users see the last checkbox ticked
+                }
 			}
             
             function startGame(){
