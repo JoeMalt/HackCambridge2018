@@ -1,19 +1,19 @@
 var OPERATIONS = [
 	{label: " + ",
-	 min: 5,
+	 min: 12,
 	 max: 100,
 	 order: false
 	},
 	{
 	 label: " - ",
-	 min: 5,
+	 min: 12,
 	 max: 100,
 	 order: true
 	},
 	{
 	 label: " * ",
-	 min: 10,
-	 max: 10,
+	 min: 2,
+	 max: 20,
 	 order: false
 	}
 ];
@@ -25,8 +25,11 @@ function genMathsPuzzle() {
 		opIndex = Math.floor(Math.random() * OPERATIONS.length)
 	} while (opIndex < 0 || opIndex >= OPERATIONS.length) //call me paranoid
 		
-	var firstOperand = Math.floor(Math.random() * (OPERATIONS[opIndex].max - OPERATIONS[opIndex].min) + OPERATIONS[opIndex].min);
-	var secondOperand = Math.floor(Math.random() * (OPERATIONS[opIndex].max - OPERATIONS[opIndex].min) + OPERATIONS[opIndex].min);
+	do {
+		var firstOperand = Math.floor(Math.random() * (OPERATIONS[opIndex].max - OPERATIONS[opIndex].min) + OPERATIONS[opIndex].min);
+		var secondOperand = Math.floor(Math.random() * (OPERATIONS[opIndex].max - OPERATIONS[opIndex].min) + OPERATIONS[opIndex].min);
+	} while(firstOperand == secondOperand)
+
 	if (OPERATIONS[opIndex].order && firstOperand < secondOperand)
 	{
 		var temp = firstOperand;

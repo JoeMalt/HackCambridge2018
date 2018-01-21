@@ -55,12 +55,12 @@
 				}
 
 				// UNCOMMENT THIS TO REQUIRE MYO
-				// if(myoConnected) {
-				// 	document.getElementById("myoConnectedCheckbox").checked = true;
-				// }
+				if(myoConnected) {
+					document.getElementById("myoConnectedCheckbox").checked = true;
+				}
 
 				// UNCOMMENT THIS TO REQUIRE MYO
-				if(cam /* && myoConnected*/){
+				if(cam  && myoConnected){
 					setTimeout(() => {
 						window.clearInterval(interval);
 						$("#content").load("main_content.html", "", () => {
