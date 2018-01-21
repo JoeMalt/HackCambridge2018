@@ -29,6 +29,7 @@
 	<script src="progress-bar.js"></script>
 	<script src="myo.js"></script>
 	<script src="myo-stuff.js"></script>
+	<script src="digit.js"></script>
     <script src="score.js"></script>
     <script type="text/javascript" src="camfeed.js"></script>
     <script type="text/javascript">
@@ -44,9 +45,10 @@
 
     		if(cam /* && other stuff*/){
     			window.clearInterval(interval);
-    			initVideo();
-    			// document.getElementById("content").innerHTML='<object type="text/html" data="main_content.html"></object>';
-    			$("#content").load("main_content.html");
+    			$("#content").load("main_content.html", "", () => {
+    				initVideo();
+    				initDial();
+    			});
     		}
     	}
     	interval = setInterval(checkParameters, 100)
