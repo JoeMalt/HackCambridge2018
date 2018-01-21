@@ -32,7 +32,7 @@ Myo.on("orientation", (data) => {
 	let phi = Math.atan2(2 * (data.w * data.x + data.y * data.z), 1 - 2 * (data.x * data.x + data.y * data.y));
 	// console.log(phi);
 	// phi = 0;
-	digitFloatValue = limit(0, 10 - epsilon, 10 * invLerp(0.75, -0.75, phi));
+	digitFloatValue = limit(0, 10 - epsilon, 10 * invLerp(-0.75, 0.75, phi));
 	// let digit = limit(0, 9, Math.floor(10 * lerp(0.7, -0.7, phi)));
 	let digit = Math.floor(digitFloatValue);
 
@@ -42,27 +42,11 @@ Myo.on("orientation", (data) => {
 	// num = Math.floor(num / 10) * 10 + digit;
 });
 
-Myo.on("fist", () => {
-	let digits = [];
-	for(var i = 0; i < 10; i++){
-		digits[i] = 0;
-	}
-	shiftReg.forEach(d => digits[d]++);
-	imax = 0;
-	for(var i = 1; i < 10; i++)
-		if(digits[i] > digits[imax])
-			imax = i;
-	// num = num  * 10 + imax;
-	if(document.getElementById("answer-text").innerHTML == "0")
-		document.getElementById("answer-text").innerHTML = imax.toString();
-	else
-		document.getElementById("answer-text").innerHTML += imax.toString();
-	shiftReg = []
-})
+Myo.on("fist", selectDigit);
 
 Myo.on("fingers_spread", () => {
 	console.log("Orientation reset!")
 	Myo.myos.map(myo => myo.zeroOrientation());
-})
+});
 
 // myMyo.on("fist", () => {alert("Fist!");})

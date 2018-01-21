@@ -33,3 +33,22 @@ function initDial(){
 	}
 	setInterval(redraw, 100);
 }
+
+function selectDigit(){
+	let digits = [];
+	for(var i = 0; i < 10; i++){
+		digits[i] = 0;
+	}
+	shiftReg.forEach(d => digits[d]++);
+	imax = 0;
+	for(var i = 1; i < 10; i++)
+		if(digits[i] > digits[imax])
+			imax = i;
+	// num = num  * 10 + imax;
+	if(document.getElementById("answer-text").innerHTML == "0")
+		document.getElementById("answer-text").innerHTML = imax.toString();
+	else
+		document.getElementById("answer-text").innerHTML += imax.toString();
+	checkAnswer();
+	shiftReg = [];
+}

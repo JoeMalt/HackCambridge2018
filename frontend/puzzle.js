@@ -7,15 +7,16 @@ var currentPuzzle;
 function newPuzzle() {
 	currentPuzzle = genMathsPuzzle()
 	document.getElementById("question-text").innerHTML = "<h2>" + currentPuzzle + " = ?" + "</h2>";
-	initialiseProgressBar(20, endGame);
+	document.getElementById("answer-text").innerHTML = "0";
+	initialiseProgressBar(60, endGame);
 }
 
-function submitAnswer() {
-	if (checkMathsSolution(currentPuzzle, document.getElementById("answer-text").value)){
+function checkAnswer() {
+	if (checkMathsSolution(currentPuzzle, document.getElementById("answer-text").innerHTML)){
 		incrementScore();
 		newPuzzle();
 		//TODO correct feedback, reset timer
 	} else {
-		//TODO incorrect feedback, penalise?
+		console.log("Not yet correct, expect ", eval(currentPuzzle), ", got ", document.getElementById("answer-text").innerHTML);
 	}
 }
