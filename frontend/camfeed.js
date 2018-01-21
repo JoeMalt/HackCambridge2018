@@ -49,8 +49,8 @@ function getCameraMedia() {
 	return navigator.mediaDevices.getUserMedia({audio: false, video: {facingMode: "user"}})
 }
 
-function initVideo(media) {
-	media.then(mediaStream => {
+function initVideo() {
+	getCameraMedia().then(mediaStream => {
 		let video = document.querySelector("#cameraVideo");
 		if ("srcObject" in video) {
 			video.srcObject = mediaStream;

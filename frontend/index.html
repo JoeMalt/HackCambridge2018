@@ -34,7 +34,7 @@
     <script type="text/javascript">
     	var interval;
     	var cam = false;
-    	var media = getCameraMedia().then(() => {cam = true;});
+    	getCameraMedia().then(() => {cam = true;});
 
     	function checkParameters() {
     		if(cam) {
@@ -44,7 +44,7 @@
 
     		if(cam /* && other stuff*/){
     			window.clearInterval(interval);
-    			initVideo(media);
+    			initVideo();
     			// document.getElementById("content").innerHTML='<object type="text/html" data="main_content.html"></object>';
     			$("#content").load("main_content.html");
     		}
