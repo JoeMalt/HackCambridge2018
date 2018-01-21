@@ -1,6 +1,6 @@
 //const SCREENSHOT_DELAY_MS = 5000;
 //DEBUG
-const SCREENSHOT_DELAY_MS = 10000;
+const SCREENSHOT_DELAY_MS = 3000;
 const SEND_IMAGES_TO = "https://ree.to:4000/emote"
 
 let startTime = Date.now();
