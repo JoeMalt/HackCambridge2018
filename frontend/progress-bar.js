@@ -3,45 +3,52 @@ const YELLOW_THRESHOLD = 50;
 
 var total_seconds;
 
-var out_of_time_callback;
+var finishedBarCallback;
 
-var countdown_interval;
+var updateInterval;
 
 var barInitTime;
-var barFinishTime;
 
 function initialiseProgressBar(seconds, out_of_time_callback){
-    console.log("initialising progress bar");
     total_seconds = seconds;
     barInitTime = Date.now();
-    barFinishTime = barInitTime + 1000 * total_seconds;
-    out_of_time_callback = out_of_time_callback;
+    finishedBarCallback = out_of_time_callback;
     updateProgressBar();
-    setInterval(updateProgressBar, 100);
+    updateInterval = setInterval(updateProgressBar, 100);
 }
 
 function updateProgressBar(){
-    var percentage = (100 - 100 * ((Date.now() - barInitTime) / (1000 * total_seconds))).toFixed(2);
 
-    console.log("Updating progress bar to " + percentage + "%");
+    var percentage = (100 - 100 * ((Date.now() - barInitTime) / (1000 * total_seconds))).toFixed(2);
+    var stopFlag = false;;
+
+    if(stopFlag = (percentage <= 0.0)){
+        clearInterval(updateInterval);
+        percentage = 0
+    }
+    // console.log("Updating progress bar to " + percentage + "%");
     $('#timer-progress-bar').css({ width : percentage + "%"}); 
     
     if (percentage > YELLOW_THRESHOLD){
-        console.log("Setting progress bar to green");
+        // console.log("Setting progress bar to green");
         $('#timer-progress-bar').addClass('bg-success');
         $('#timer-progress-bar').removeClass('bg-warning');
         $('#timer-progress-bar').removeClass('bg-error');
     }
     else if (percentage > RED_THRESHOLD){
-        console.log("Setting progress bar to yellow");
+        // console.log("Setting progress bar to yellow");
         $('#timer-progress-bar').removeClass('bg-success');
         $('#timer-progress-bar').addClass('bg-warning');
         $('#timer-progress-bar').removeClass('bg-error');
     }
     else{
-        console.log("Setting progress bar to red");
+        // console.log("Setting progress bar to red");
         $('#timer-progress-bar').removeClass('bg-success');
         $('#timer-progress-bar').removeClass('bg-warning');
         $('#timer-progress-bar').addClass('bg-danger');
+    }
+
+    if(stopFlag){
+        finishedBarCallback();
     }
 }
