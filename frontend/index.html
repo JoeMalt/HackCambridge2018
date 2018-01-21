@@ -24,6 +24,13 @@
                     <input type="checkbox" disabled=true id="myoConnectedCheckbox">Myo Connected<br>
                 </form>
               </p>
+              <canvas id="digitDial" width="300" height="150"></canvas>
+              <ul>
+              	<li>Spread out the fingers to calibrate <img src="myo_fingers_out.png"></li>
+              	<li>Rotate the hand to select a digit <img src="myo_rotate.png"></li>
+              	<li>Press space bar to choose a digit</li>
+          	  </ul>
+
             </div>
 			
 		</div>
@@ -48,6 +55,7 @@
 			var cam = false;
 			var mediaStream; 
 			getCameraMedia().then((_mediaStream) => {cam = true; mediaStream = _mediaStream});
+			initDial();
 
 			function checkParameters() {
 				if(cam) {
