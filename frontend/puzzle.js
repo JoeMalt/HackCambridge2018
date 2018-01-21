@@ -8,7 +8,7 @@ function newPuzzle() {
 	currentPuzzle = genMathsPuzzle()
 	document.getElementById("question-text").innerHTML = "<h2>" + currentPuzzle + " = ?" + "</h2>";
 	document.getElementById("answer-text").innerHTML = "0";
-	initialiseProgressBar(60, endGame);
+	initialiseProgressBar(20, endGame);
 }
 
 function checkAnswer() {

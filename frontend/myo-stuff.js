@@ -25,7 +25,7 @@ function limit(min, max, val) {
 	return val < min ? min : val > max ? max : val;
 }
 
-const SHIFT_REG_LEN = 50;
+const SHIFT_REG_LEN = 20;
 var shiftReg = [];
 
 Myo.on("orientation", (data) => {

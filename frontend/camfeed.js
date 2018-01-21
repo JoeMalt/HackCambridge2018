@@ -15,8 +15,11 @@ let sendScreenshot = (video) => {
 	request = new XMLHttpRequest();
 	request.open("POST", SEND_IMAGES_TO);
 	request.send(canvas.toDataURL("image/png").substring(22)); //strip out the "data:image/png;base64," from the data URI
-    updateMoodBars(request.response); // Why is is not bound to request.onreadystatechange ???
-	// TODO: HANDLE RESPONSE!
+	request.onreadystatechange = () => {
+		if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+			updateMoodBars(JSON.parse(request.responseText)); // Why is is not bound to request.onreadystatechange ???
+		}
+	}
 }
 
 function getCameraMedia() {
