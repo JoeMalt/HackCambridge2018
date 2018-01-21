@@ -15,7 +15,7 @@
 	
 		<div class="container" id="content" >
             <div class="jumbotron" style="margin-top:13%">
-              <h1 class="display-4">Keep smiling!</h1>
+              <h1 class="display-4">Keep smiling!</h1> 
               <p class="lead">To start the game, connect Myo and click "Allow" so we can use the webcam.</p>
               <hr class="my-4">
               <p>
@@ -24,12 +24,20 @@
                     <input type="checkbox" disabled=true id="myoConnectedCheckbox">Myo Connected<br>
                 </form>
               </p>
-              <canvas id="digitDial" width="300" height="150"></canvas>
-              <ul>
-              	<li>Spread out the fingers to calibrate <img src="myo_fingers_out.png"></li>
-              	<li>Rotate the hand to select a digit <img src="myo_rotate.png"></li>
-              	<li>Press space bar to choose a digit</li>
-          	  </ul>
+              <table style="border-spacing: 30px; border-collapse: separate">
+                  <tr>
+                      <td style="text-align:center"><img src="myo_fingers_out.png" style="height:80px"></td>
+                      <td style="text-align:center"><img src="myo_rotate.png" style="height:80px"></td>
+                      <td rowspan="3" style="text-align:center"><canvas id="digitDial" width="300" height="150"></canvas></td>
+                  </tr>
+                  <tr>
+                      <td>Spread out the fingers to calibrate</td>
+                      <td>Rotate the hand to select a digit</td>
+                  </tr>
+                  <tr>
+                      <td colspan="2" style="text-align:center">Press space bar to confirm a digit</td>
+                  </tr>
+              </table>
 
             </div>
 			
