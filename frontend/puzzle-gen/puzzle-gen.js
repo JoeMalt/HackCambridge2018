@@ -1,19 +1,19 @@
 var OPERATIONS = [
 	{label: " + ",
-	 min: 100,
-	 max: 1000,
+	 min: 5,
+	 max: 100,
 	 order: false
 	},
 	{
 	 label: " - ",
-	 min: 100,
-	 max: 1000,
+	 min: 5,
+	 max: 100,
 	 order: true
 	},
 	{
 	 label: " * ",
 	 min: 10,
-	 max: 100,
+	 max: 10,
 	 order: false
 	}
 ];
