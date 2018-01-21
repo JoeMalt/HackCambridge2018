@@ -1,5 +1,11 @@
 function endGame(){
-	alert("You are dead");
+	///alert("Time's up! You scored " + getScore());
+    var finalScore = getScore();
+    
+    $("#content").load("end_game_content.html", "", () => {
+        sendEmotionRequests = false;
+        $('#score-para').append(finalScore);
+    })
 }
 
 var currentPuzzle;
@@ -8,7 +14,7 @@ function newPuzzle() {
 	currentPuzzle = genMathsPuzzle()
 	document.getElementById("question-text").innerHTML = "<h2>" + currentPuzzle + " = ?" + "</h2>";
 	document.getElementById("answer-text").innerHTML = "0";
-	initialiseProgressBar(60, endGame);
+	initialiseProgressBar(10, endGame);
 }
 
 function checkAnswer() {

@@ -61,27 +61,32 @@
 				// UNCOMMENT THIS TO REQUIRE MYO
 				if(cam /* && myoConnected*/){
 					window.clearInterval(interval);
-					$("#content").load("main_content.html", "", () => {
-						initVideo();
-						initDial();
-						newPuzzle();
-
-						document.onkeypress = e => {
-							switch(e.code) {
-								case "Space":
-									e.preventDefault(); // Prevent space bar scroll
-									selectDigit();
-									break;
-							}
-						};
-
-						document.getElementById("answer-reset").onclick = e => {
-							document.getElementById("answer-text").innerHTML = "0";
-							console.log("Reset");
-						};
-					});
+					startGame();
 				}
 			}
+            
+            function startGame(){
+                $("#content").load("main_content.html", "", () => {
+                    initVideo();
+                    initDial();
+                    newPuzzle();
+                    sendEmotionRequests = true;
+
+                    document.onkeypress = e => {
+                        switch(e.code) {
+                            case "Space":
+                                e.preventDefault(); // Prevent space bar scroll
+                                selectDigit();
+                                break;
+                        }
+                    };
+
+                    document.getElementById("answer-reset").onclick = e => {
+                        document.getElementById("answer-text").innerHTML = "0";
+                        console.log("Reset");
+                    };
+                });
+            }
 			interval = setInterval(checkParameters, 100);
 		</script>
 	</body>

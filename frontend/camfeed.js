@@ -3,7 +3,12 @@ const SEND_IMAGES_TO = "https://ree.to:4000/emote"
 
 let startTime = Date.now();
 
+let sendEmotionRequests = false;
+
 let sendScreenshot = (video) => {
+    if (!sendEmotionRequests){
+        return;
+    }
 	let canvas = document.createElement("canvas");
 	let dim = Math.min(video.videoWidth, video.videoHeight);
 	canvas.width = dim;
