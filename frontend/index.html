@@ -46,7 +46,8 @@
 			var interval;
 
 			var cam = false;
-			getCameraMedia().then(() => {cam = true;});
+			var mediaStream; 
+			getCameraMedia().then((_mediaStream) => {cam = true; mediaStream = _mediaStream});
 
 			function checkParameters() {
 				if(cam) {
@@ -60,26 +61,28 @@
 
 				// UNCOMMENT THIS TO REQUIRE MYO
 				if(cam /* && myoConnected*/){
-					window.clearInterval(interval);
-					$("#content").load("main_content.html", "", () => {
-						initVideo();
-						initDial();
-						newPuzzle();
+					setTimeout(() => {
+						window.clearInterval(interval);
+						$("#content").load("main_content.html", "", () => {
+							initVideo(mediaStream);
+							initDial();
+							newPuzzle();
 
-						document.onkeypress = e => {
-							switch(e.code) {
-								case "Space":
-									e.preventDefault(); // Prevent space bar scroll
-									selectDigit();
-									break;
-							}
-						};
+							document.onkeypress = e => {
+								switch(e.code) {
+									case "Space":
+										e.preventDefault(); // Prevent space bar scroll
+										selectDigit();
+										break;
+								}
+							};
 
-						document.getElementById("answer-reset").onclick = e => {
-							document.getElementById("answer-text").innerHTML = "0";
-							console.log("Reset");
-						};
-					});
+							document.getElementById("answer-reset").onclick = e => {
+								document.getElementById("answer-text").innerHTML = "0";
+								console.log("Reset");
+							};
+						});
+					}, 200); // Timeout so users see the last checkbox ticked
 				}
 			}
 			interval = setInterval(checkParameters, 100);

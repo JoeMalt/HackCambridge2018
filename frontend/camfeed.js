@@ -53,23 +53,18 @@ function getCameraMedia() {
 	return navigator.mediaDevices.getUserMedia({audio: false, video: {facingMode: "user"}})
 }
 
-function initVideo() {
-	getCameraMedia().then(mediaStream => {
-		let video = document.querySelector("#cameraVideo");
-		if ("srcObject" in video) {
-			video.srcObject = mediaStream;
-		} else {
-			// Avoid using this in new browsers, as it is going away.
-			video.src = window.URL.createObjectURL(mediaStream);
-		}
-		video.onloadedmetadata = e => {
-			cameraConnected = true;
-			video.play();
-			sendScreenshot(video)
-			setInterval(() => { sendScreenshot(video); }, SCREENSHOT_DELAY_MS);
-		}
-	})
-	.catch(err => {
-		console.log(err.name + ": " + err.message);
-	})
+function initVideo(mediaStream) {
+	let video = document.querySelector("#cameraVideo");
+	if ("srcObject" in video) {
+		video.srcObject = mediaStream;
+	} else {
+		// Avoid using this in new browsers, as it is going away.
+		video.src = window.URL.createObjectURL(mediaStream);
+	}
+	video.onloadedmetadata = e => {
+		cameraConnected = true;
+		video.play();
+		sendScreenshot(video)
+		setInterval(() => { sendScreenshot(video); }, SCREENSHOT_DELAY_MS);
+	}
 }
