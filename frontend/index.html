@@ -1,82 +1,66 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Keep Smiling!</title>
+		<title>Keep Smiling!</title>
 
-  </head>
-  <body>
-    
-    <div class="container" id="content">
-    	<form>
-    		<input type="checkbox" disabled=true id="camEnabledCheckbox">Camera Enabled<br>
-    	</form>
-    </div>
+	</head>
+	<body>
+	
+		<div class="container" id="content">
+			<form>
+				<input type="checkbox" disabled=true id="camEnabledCheckbox">Camera Enabled<br>
+				<input type="checkbox" disabled=true id="myoConnectedCheckbox">Myo Connected<br>
+			</form>
+		</div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script src="puzzle-gen/puzzle-gen.js"></script>
-    <script src="mood-bars.js"></script>
-	<script src="progress-bar.js"></script>
-	<script src="myo.js"></script>
-	<script src="myo-stuff.js"></script>
-	<script src="digit.js"></script>
-    <script src="score.js"></script>
-    <script type="text/javascript" src="camfeed.js"></script>
-    <script type="text/javascript">
-    	var interval;
-    	var cam = false;
-    	getCameraMedia().then(() => {cam = true;});
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="puzzle-gen/puzzle-gen.js"></script>
+		<script src="mood-bars.js"></script>
+		<script src="progress-bar.js"></script>
+		<script src="myo.js"></script>
+		<script src="myo-stuff.js"></script>
+		<script src="digit.js"></script>
+		<script src="score.js"></script>
+		<script src="camfeed.js"></script>
+		<script src="puzzle.js"></script>
+		<script type="text/javascript">
+			var interval;
 
-    	function checkParameters() {
-    		if(cam) {
-    			cam = true;
-    			document.getElementById("camEnabledCheckbox").checked = true;
-    		}
+			var cam = false;
+			getCameraMedia().then(() => {cam = true;});
 
-    		if(cam /* && other stuff*/){
-    			window.clearInterval(interval);
-    			$("#content").load("main_content.html", "", () => {
-    				initVideo();
-    				initDial();
-    			});
-    		}
-    	}
-    	interval = setInterval(checkParameters, 100)
-    </script>
-	<!-- <script>
-    function endGame(){
-        alert("You are dead");
-    }    
-        
-        
-	var currentPuzzle
-	function newPuzzle() {
-		currentPuzzle = genMathsPuzzle()
-		document.getElementById("question-text").innerHTML = "<h2>" + currentPuzzle + " = ?" + "</h2>";
-		initialiseProgressBar(20, endGame);
-	}
-	function submitAnswer() {
-		if (checkMathsSolution(currentPuzzle, document.getElementById("answer-text").value)){
-            incrementScore();
-			newPuzzle();
-			//TODO correct feedback, reset timer
-		} else {
-		    //TODO incorrect feedback, penalise?
-		}
-	}
-	window.onload = newPuzzle();
-	</script> -->
-    <!-- <script type="text/javascript" src="https://raw.githubusercontent.com/thalmiclabs/myo.js/master/myo.js"></script> -->
-    <!-- <script type="text/javascript" src="myo-stuff.js"></script> -->
-  </body>
+			function checkParameters() {
+				if(cam) {
+					document.getElementById("camEnabledCheckbox").checked = true;
+				}
+
+				// UNCOMMENT THIS TO REQUIRE MYO
+				// if(myoConnected) {
+				// 	document.getElementById("myoConnectedCheckbox").checked = true;
+				// }
+
+				// UNCOMMENT THIS TO REQUIRE MYO
+				if(cam /* && myoConnected*/){
+					window.clearInterval(interval);
+					$("#content").load("main_content.html", "", () => {
+						initVideo();
+						initDial();
+						newPuzzle();
+					});
+				}
+			}
+			interval = setInterval(checkParameters, 100)
+		</script>
+	</body>
 </html>

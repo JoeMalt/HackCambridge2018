@@ -53,7 +53,10 @@ Myo.on("fist", () => {
 		if(digits[i] > digits[imax])
 			imax = i;
 	// num = num  * 10 + imax;
-	document.getElementById("answer-text").innerHTML += imax.toString();
+	if(document.getElementById("answer-text").innerHTML == "0")
+		document.getElementById("answer-text").innerHTML = imax.toString();
+	else
+		document.getElementById("answer-text").innerHTML += imax.toString();
 	shiftReg = []
 })
 

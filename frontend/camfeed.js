@@ -5,16 +5,17 @@ let startTime = Date.now();
 
 let sendScreenshot = (video) => {
 	let canvas = document.createElement("canvas");
-	canvas.width = video.videoWidth;
-	canvas.height = video.videoHeight;
+	let dim = Math.min(video.videoWidth, video.videoHeight);
+	canvas.width = dim;
+	canvas.height = dim;
 	context = canvas.getContext("2d");
-	context.drawImage(video, 0, 0);
+	context.drawImage(video, (video.videoWidth - dim) / 2, (video.videoHeight - dim) / 2, dim, dim, 0, 0, dim, dim);
 
 
 	request = new XMLHttpRequest();
 	request.open("POST", SEND_IMAGES_TO);
 	request.send(canvas.toDataURL("image/png").substring(22)); //strip out the "data:image/png;base64," from the data URI
-    updateMoodBars(request.response);
+    updateMoodBars(request.response); // Why is is not bound to request.onreadystatechange ???
 	// TODO: HANDLE RESPONSE!
 }
 
